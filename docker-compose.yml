@@ -1,0 +1,25 @@
+services:
+  eas-android-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: eas-android-server:1.0
+    stdin_open: true
+    tty: true
+    environment:
+      - ANDROID_HOME=/opt/android-sdk
+      - EXPO_TOKEN=${EXPO_TOKEN}
+    volumes:
+      - .:/workspace:delegated
+      - npm-cache:/root/.npm
+      - yarn-cache:/root/.cache/yarn
+      - eas-cache:/root/.eas
+      - expo-cache:/root/.expo
+      - gradle-cache:/root/.gradle
+
+volumes:
+  npm-cache:
+  yarn-cache:
+  eas-cache:
+  expo-cache:
+  gradle-cache:
